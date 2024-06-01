@@ -1,0 +1,28 @@
+---
+- name: Verify OS and install Instance Connect
+  hosts: app
+  become: yes
+  tasks:
+    - name: Check OS
+      ansible.builtin.shell:
+        cmd: "cat /etc/os-release | grep -i ^ID="
+      register: os_check
+      ignore_errors: true
+
+    - name: Install Instance Connect on Ubuntu
+      ansible.builtin.apt:
+        name: ec2-instance-connect
+        state: present
+      when: os_check.stdout.find('ubuntu') != -1
+
+    - name: Install Instance Connect on CentOS
+      ansible.builtin.yum:
+        name: ec2-instance-connect
+        state: present
+      when: os_check.stdout.find('centos') != -1
+
+    - name: Install Instance Connect on Amazon Linux
+      ansible.builtin.yum:
+        name: ec2-instance-connect
+        state: present
+      when: os_check.stdout.find('amazon') != -1
