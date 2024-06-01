@@ -1,0 +1,40 @@
+---
+- name: Verificar e instalar Amazon EC2 Instance Connect
+  hosts: ec2_instances
+  become: yes
+  tasks:
+    - name: Detectar o sistema operacional
+      ansible.builtin.shell: cat /etc/os-release
+      register: os_release
+
+    - name: Verificar se o Instance Connect está instalado (CentOS/Amazon Linux)
+      ansible.builtin.command: rpm -q ec2-instance-connect
+      register: instance_connect_status_centos_amazon
+      when: '"centos" in os_release.stdout or "amzn" in os_release.stdout'
+      ignore_errors: yes
+
+    - name: Verificar se o Instance Connect está instalado (Ubuntu)
+      ansible.builtin.command: dpkg -l | grep ec2-instance-connect
+      register: instance_connect_status_ubuntu
+      when: '"ubuntu" in os_release.stdout'
+      ignore_errors: yes
+
+    - name: Instalar Instance Connect no CentOS/Amazon Linux
+      ansible.builtin.yum:
+        name: ec2-instance-connect
+        state: present
+      when: '"centos" in os_release.stdout or "amzn" in os_release.stdout'
+      notify: restart_sshd
+
+    - name: Instalar Instance Connect no Ubuntu
+      ansible.builtin.apt:
+        name: ec2-instance-connect
+        state: present
+      when: '"ubuntu" in os_release.stdout'
+      notify: restart_sshd
+
+  handlers:
+    - name: restart_sshd
+      ansible.builtin.service:
+        name: sshd
+        state: restarted

@@ -1,0 +1,26 @@
+---
+- name: Verificar e instalar o Instance Connect
+  hosts: all
+  become: yes
+  tasks:
+    - name: Verificar qual é o sistema operacional
+      ansible.builtin.command: "cat /etc/os-release | grep -i ^ID="
+      register: os_check
+
+    - name: Instalar o Instance Connect no CentOS
+      ansible.builtin.yum:
+        name: ec2-instance-connect
+        state: present
+      when: os_check.stdout.find('centos') != -1
+
+    - name: Instalar o Instance Connect no Ubuntu
+      ansible.builtin.apt:
+        name: ec2-instance-connect
+        state: present
+      when: os_check.stdout.find('ubuntu') != -1
+
+    - name: Instalar o Instance Connect no Amazon Linux
+      ansible.builtin.yum:
+        name: ec2-instance-connect
+        state: present
+      when: os_check.stdout.find('amzn') != -1
