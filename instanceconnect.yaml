@@ -1,6 +1,6 @@
 ---
 - name: Verificar e instalar Amazon EC2 Instance Connect
-  hosts: instancias_ec2
+  hosts: app
   become: yes
   tasks:
     - name: Detectar o sistema operacional
