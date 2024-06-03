@@ -1,0 +1,10 @@
+---
+- name: Install Instance Connect
+  hosts: app
+  become: yes
+  tasks:
+
+    - name: Install Instance Connect
+      package:
+        name: ec2-instance-connect
+        state: present
