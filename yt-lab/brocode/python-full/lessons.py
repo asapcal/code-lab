@@ -73,10 +73,44 @@
 
 #Type casting = convert the data type of a value to another data type.
 
-x = 1 #int
-y = 2.0 #float
-z = "3" #str
+#x = 1 #int
+#y = 2.0 #float
+#z = "3" #str
 
-print(x)
-print(y)
-print(z)
+#print("x is "+str(x))
+#print("y is "+str(y))
+#print("z is "+str(z*3))
+
+#x = str(x)
+#y = str(y)
+#z = str(z)
+
+#print(x)
+#print(y)
+#print(z)
+
+#user imput
+
+name = input("What is your name?: ")
+age = int(input("How old are you?: "))
+height = float(input("How tall are you?: "))
+
+print("Hello "+name)
+print("You are "+str(age)+" years old")
+print("You are "+str(height)+"cm tall")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
