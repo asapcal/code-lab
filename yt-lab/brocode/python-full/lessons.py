@@ -133,11 +133,10 @@
 #print(funky_name)
 #print(reversed_name)
 
-website1 = "https://google.com"
-website2 = "https://wikipedia.com"
-
-slice = slice(8,12)
-print(website2[slice])
+#website1 = "https://google.com"
+#website2 = "https://wikipedia.com"
+#slice = slice(8,12)
+#print(website2[slice])
 
 # if statement = a block of code that will execute if a condition is true
 
