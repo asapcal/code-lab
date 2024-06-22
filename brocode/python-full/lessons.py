@@ -139,20 +139,27 @@
 #print(website2[slice])
 
 # if statement = a block of code that will execute if a condition is true
+#age = int(input("What is your age?: "))
+#if age == 100:  
+#    print("You are a century old!")
+#elif age > 100:  
+#    print("You are immortal?")
+#elif age >= 18:
+#    print("You are an adult!")
+#elif age < 0:
+#    print("You haven't been born yet!")
+#else:
+#    print("You are a child!")
 
-age = int(input("What is your age?: "))
+# logial operators (and,or) = used to check if two or more conditional statements is true
 
-if age == 100:  
-    print("You are a century old!")
-elif age > 100:  
-    print("You are immortal?")
-elif age >= 18:
-    print("You are an adult!")
-elif age < 0:
-    print("You haven't been born yet!")
-else:
-    print("You are a child!")
+temp = int(input("What is temperature outside?: "))
 
+if temp>= 0 and temp <= 30:
+    print("The temperature is good today, go outside!")
+elif temp < 0 or temp > 30:
+    pass
+print("The temperature is bad today, stay inside!")
 
 
 
