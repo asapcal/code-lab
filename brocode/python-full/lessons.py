@@ -152,16 +152,18 @@
 #    print("You are a child!")
 
 # logial operators (and,or) = used to check if two or more conditional statements is true
+#temp = int(input("What is temperature outside?: "))
+#if temp>= 0 and temp <= 30:
+#    print("The temperature is good today, go outside!")
+#elif temp < 0 or temp > 30:
+#    pass
+#print("The temperature is bad today, stay inside!")
 
-temp = int(input("What is temperature outside?: "))
+# while loop = a statement that will execute it's block of code,
+# as long as it's condition remains true
 
-if temp>= 0 and temp <= 30:
-    print("The temperature is good today, go outside!")
-elif temp < 0 or temp > 30:
-    pass
-print("The temperature is bad today, stay inside!")
-
-
+while 1==1:
+    name = print("Help! I'm stuck in a loop!")
 
 
 
