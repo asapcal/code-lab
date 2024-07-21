@@ -162,14 +162,32 @@
 # while loop = a statement that will execute it's block of code,
 # as long as it's condition remains true
 
+
+
 #while 1==1:
 #    name = print("Help! I'm stuck in a loop!")
 
+#name = ""
 
+#while len(name) == 0:
+#    name = input("Enter your name: ")
 
+#print("Hello "+name)
 
+#name = None
 
+#while not name:
+#    name = input("Enter your name: ")
 
+#print("Hello "+name)
 
+#import time 
+
+# for loop = a statement that will execute it's block of code
+#                   a limited amount of times 
+#                   while loop = unlimited
+#                   for loop = limited
+
+#continue in: https://www.youtube.com/watch?v=XKHEtdqhLK8&t 
 
 
