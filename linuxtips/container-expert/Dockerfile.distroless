@@ -25,11 +25,10 @@ FROM cgr.dev/chainguard/python:latest
 #Define o diretório de trabalho
 WORKDIR /app
 
-# Copia o arquivo do app e dependencias instaladas na fase de cosntrução
+# Copia o arquivo do app e dependencias instaladas na fase de construção
 COPY --from=builder /app/app.py /app/
-#COPY --from=builder /root/.local/.lib/python3.12/site-packages /home/nonroot/.local/.lib/python3.12/site-packages
+COPY --from=builder /root/.local/.lib /home/nonroot/.local/.lib
 COPY --from=builder /root/.local/bin /home/nonroot/.local/bin
-COPY --from=builder /root/.local /home/nonroot/.local
 ENV PATH=$PATH:/home/nonroot/.local/bin
 
 # Define o comando para rodar o script
