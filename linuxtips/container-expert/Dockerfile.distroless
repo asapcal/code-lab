@@ -16,7 +16,6 @@ COPY app.py /app/
 COPY requirements.txt /app/
 
 # Instala as dependências do python
-#RUN pip install --no-cache-dir --user -r requirements.txt
 RUN pip install --no-cache-dir --user -r requirements.txt
 
 # Imagem distroless
