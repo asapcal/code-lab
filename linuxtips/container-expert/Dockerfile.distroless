@@ -1,0 +1,36 @@
+#Estagio de build
+FROM python:3.12-slim AS builder
+
+#Define o diretório de trabalho
+WORKDIR /app
+
+# Atualiza e instala os pacotes do sistema e instala as ferramentas
+RUN apt update && \
+    apt install -y \
+    python3 python3-pip curl \
+    wget git vim nano build-essential \
+    && apt clean && rm -rf /var/lib/apt/lists/*
+
+#Copia os arquivos
+COPY app.py /app/
+COPY requirements.txt /app/
+
+# Instala as dependências do python
+#RUN pip install --no-cache-dir --user -r requirements.txt
+RUN pip install --no-cache-dir --user -r requirements.txt
+
+# Imagem distroless
+FROM cgr.dev/chainguard/python:latest
+
+#Define o diretório de trabalho
+WORKDIR /app
+
+# Copia o arquivo do app e dependencias instaladas na fase de cosntrução
+COPY --from=builder /app/app.py /app/
+#COPY --from=builder /root/.local/.lib/python3.12/site-packages /home/nonroot/.local/.lib/python3.12/site-packages
+COPY --from=builder /root/.local/bin /home/nonroot/.local/bin
+COPY --from=builder /root/.local /home/nonroot/.local
+ENV PATH=$PATH:/home/nonroot/.local/bin
+
+# Define o comando para rodar o script
+ENTRYPOINT ["python3", "app.py"]
