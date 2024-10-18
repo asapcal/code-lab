@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+        #time {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #555;
+        }
+        #utc-time {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hello, world on time!</h1>
+    <p>This is a simple Go web server test page to display time.</p>
+    <p id="time">Local time will appear here...</p>
+    <p id="utc-time">UTC time will appear here...</p>
+
+    <script>
+        function showTime() {
+            const now = new Date();
+
+            // Local time
+            const timeElement = document.getElementById("time");
+            timeElement.innerText = "Local Time: " + now.toLocaleTimeString();
+
+            // UTC time
+            const utcTimeElement = document.getElementById("utc-time");
+            utcTimeElement.innerText = "UTC Time: " + now.toUTCString().split(" ")[4];  // Extracting only the time part
+        }
+
+        // Call the function once the page loads
+        window.onload = showTime;
+    </script>
+</body>
+</html>
+
